@@ -1,0 +1,43 @@
+global:
+  checkNewVersion: true
+  sendAnonymousUsage: false
+log:
+  level: DEBUG
+  
+api:
+  dashboard: true
+  insecure: true
+
+providers:
+  docker:
+    endpoint: "unix:///var/run/docker.sock"
+    exposedByDefault: false
+    network: traefik
+  file:
+    directory: /etc/traefik/dynamic
+    watch: true
+
+entryPoints:
+  web:
+    address: ":80"
+  websecure:
+    address: ":443"
+    asDefault: true
+
+certificatesResolvers:
+  cloudflare:
+    acme:
+      email: me@astrohweston.xyz
+      storage: /var/traefik/certs/cloudflare-acme.json
+      dnsChallenge:
+        provider: cloudflare
+
+https:
+  address: ":443"
+  asDefault: true
+  http:
+    tls:
+      certResolver: "cloudflare"
+  http2:
+    maxConcurrentStreams: 250
+  http3: {}

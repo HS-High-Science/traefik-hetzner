@@ -1,0 +1,17 @@
+http:
+  routers:
+    sentry:
+      rule: "Host(`portainer.astrohweston.xyz`)"
+      service: sentry
+        
+  services:
+    sentry:
+      loadBalancer:
+        servers:
+          - url: "http://65.21.157.66:9000"
+        healthCheck:
+          scheme: http
+          path: /_health/
+          interval: 30s
+          timeout: 10s
+        passHostHeader: true
