@@ -28,7 +28,7 @@ certificatesResolvers:
   cloudflare:
     acme:
       email: me@astrohweston.xyz
-      storage: /var/traefik/certs/cloudflare-acme.json
+      storage: /etc/traefik/acme/acme.json
       dnsChallenge:
         provider: cloudflare
 

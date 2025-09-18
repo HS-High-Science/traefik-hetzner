@@ -3,6 +3,8 @@ services:
   traefik:
     image: "traefik:latest"
     container_name: "traefik"
+    networks:
+      - traefik
     ports:
       - "80:80"
       - "443:443"
@@ -13,10 +15,14 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./traefik.yml:/etc/traefik/traefik.yml:ro
       - ./configs/:/etc/traefik/dynamic/:ro
-      - data/certs/:/var/traefik/certs/:rw
-    networks:
-      - traefik
+      - acme:/etc/traefik/certs
     restart: unless-stopped
+    deploy:
+      mode: global
+      placement:
+        max_replicas_per_node: 1
+        constraints:
+          - node.role == manager
 networks:
   traefik:
     external: false
