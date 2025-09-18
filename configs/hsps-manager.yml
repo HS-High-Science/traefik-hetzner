@@ -1,14 +1,14 @@
 http:
   routers:
-    sentry:
-      rule: "Host(`portainer.astrohweston.xyz`)"
-      service: sentry
-        
+    hsps-manager:
+      rule: "Host(`hsps-manager.astrohweston.xyz`)"
+      service: hsps-manager
+
   services:
-    sentry:
+    hsps-manager:
       loadBalancer:
         servers:
-          - url: "http://65.21.157.66:9000"
+          - url: "http://65.21.157.66:2473"
         healthCheck:
           scheme: http
           path: /_health/
