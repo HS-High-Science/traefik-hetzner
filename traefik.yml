@@ -32,14 +32,9 @@ entryPoints:
     http:
       tls:
         certResolver: "cloudflare"
-      http2:
-        maxConcurrentStreams: 250
-      http3: {}
 
   internal:
     address: ":8080"
-    http2:
-      maxConcurrentStreams: 250
 
 certificatesResolvers:
   cloudflare:
@@ -55,6 +50,3 @@ https:
   http:
     tls:
       certResolver: "cloudflare"
-  http2:
-    maxConcurrentStreams: 250
-  http3: {}
