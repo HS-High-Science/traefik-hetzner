@@ -17,12 +17,6 @@ services:
       - ./configs/:/etc/traefik/dynamic/:ro
       - acme:/etc/traefik/certs
     restart: unless-stopped
-    deploy:
-      mode: global
-      placement:
-        max_replicas_per_node: 1
-        constraints:
-          - node.role == manager
 
 volumes:
   acme:
