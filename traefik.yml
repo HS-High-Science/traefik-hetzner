@@ -33,9 +33,6 @@ entryPoints:
       tls:
         certResolver: "cloudflare"
 
-  internal:
-    address: ":8080"
-
 certificatesResolvers:
   cloudflare:
     acme:
