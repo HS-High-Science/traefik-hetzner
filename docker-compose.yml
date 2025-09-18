@@ -23,6 +23,10 @@ services:
         max_replicas_per_node: 1
         constraints:
           - node.role == manager
+
+volumes:
+  acme:
+
 networks:
   traefik:
     external: false
