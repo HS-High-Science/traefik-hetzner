@@ -16,4 +16,4 @@ http:
     mailcow:
       loadBalancer:
         servers:
-          - url: "http://mailcow-nginx-mailcow-1:8080"
+          - url: "http://65.21.157.66:8080"
