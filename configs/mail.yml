@@ -1,0 +1,28 @@
+http:
+  routers:
+    mailcow:
+      entryPoints: "websecure"
+      rule: "Host(`mail.astrohweston.xyz`)"
+      service: mailcow-svc
+      tls:
+        certResolver: cloudflare
+
+    mailcow-autoconfig:
+      entryPoints: "websecure"
+      rule: "(Host(`autoconfig.astrohweston.xyz`) && Path(`/autodiscover/autodiscover.xml`))"
+      service: mailcow-svc
+      tls:
+        certResolver: cloudflare
+
+    mailcow-autodiscover:
+      entryPoints: "websecure"
+      rule: "(Host(`autodiscover.astrohweston.xyz`) && Path(`/mail/config-v1.1.xml`))"
+      service: mailcow-svc
+      tls:
+        certResolver: cloudflare
+
+  services:
+    mailcow:
+      loadBalancer:
+        servers:
+          - url: "http://mailcow-nginx-mailcow-1:8080"
