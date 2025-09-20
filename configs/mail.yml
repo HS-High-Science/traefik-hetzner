@@ -2,15 +2,15 @@ http:
   routers:
     mailcow:
       rule: "Host(`mail.astrohweston.xyz`)"
-      service: mailcow-svc
+      service: mailcow
 
     mailcow-autoconfig:
       rule: "(Host(`autoconfig.astrohweston.xyz`) && Path(`/autodiscover/autodiscover.xml`))"
-      service: mailcow-svc
+      service: mailcow
 
     mailcow-autodiscover:
       rule: "(Host(`autodiscover.astrohweston.xyz`) && Path(`/mail/config-v1.1.xml`))"
-      service: mailcow-svc
+      service: mailcow
 
   services:
     mailcow:
